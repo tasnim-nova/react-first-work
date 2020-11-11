@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Button from 'react-bootstrap/Button';
 
 function App() {
 
@@ -29,11 +30,14 @@ function App() {
 }
 
 
-function Counter(props) {
+function Counter() {
   const [count, setCount] = useState(10);
+
   return(
       <div>
         <h1>Count:  {count} </h1>
+        <button style={{backgroundColor:'green', borderRadius: '5px', color:'white'}} onClick= {() => setCount(count-1)}>Decrease</button>
+        <button style={{backgroundColor:'green', borderRadius: '5px', color:'white'}} onClick= {() => setCount(count+1)}>Increase</button>
       </div>
     );
   }
