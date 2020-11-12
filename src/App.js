@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Button from 'react-bootstrap/Button';
+import { useEffect } from 'react';
 
 function App() {
 
@@ -13,6 +13,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
        <Counter></Counter>
+       <Users></Users>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -40,6 +41,27 @@ function Counter() {
         <button style={{backgroundColor:'green', borderRadius: '5px', color:'white'}} onClick= {() => setCount(count+1)}>Increase</button>
       </div>
     );
+  }
+
+  function Users(){
+    const [users, setUsers] = useState([]);
+    useEffect(()=>{
+      fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(data => setUsers(data));
+    }, [])
+  
+
+    return(
+      <div>
+        <h3>Dynamic Users: {users.length}</h3>
+        <ul>
+          {
+            users.map(user => <li>Name:{user.name} ; Email:{user.email}</li>)
+          }
+        </ul>
+      </div>
+    )
   }
 
 
